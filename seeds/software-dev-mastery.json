@@ -1,0 +1,186 @@
+{
+  "metadata": {
+    "name": "Software Development Mastery",
+    "version": "1.0",
+    "created": "2025-01-10",
+    "category": "software_development"
+  },
+  "entities": [
+    {"type": "goal", "name": "Superior Code Quality", "priority": "P0", "description": "Write maintainable, tested, performant code"},
+    {"type": "goal", "name": "Fast Iteration", "priority": "P1", "description": "Ship quickly, learn from feedback"},
+    {"type": "blocker", "name": "Technical Debt", "description": "Accumulated shortcuts that slow future development"},
+    {"type": "blocker", "name": "Missing Tests", "description": "No safety net for refactoring"},
+    {"type": "blocker", "name": "Poor Documentation", "description": "Knowledge trapped in heads, not code"},
+    {"type": "pattern", "name": "Type Safety First", "description": "Use type hints/TypeScript strict mode to catch bugs at compile time"},
+    {"type": "pattern", "name": "Test-Driven Development", "description": "Write tests first, then implementation"},
+    {"type": "pattern", "name": "Small PRs", "description": "Atomic, reviewable changes under 400 lines"},
+    {"type": "phase", "name": "Design", "description": "Architecture decisions, API design"},
+    {"type": "phase", "name": "Implement", "description": "Write code with tests"},
+    {"type": "phase", "name": "Review", "description": "Code review and iteration"},
+    {"type": "phase", "name": "Deploy", "description": "Ship to production"}
+  ],
+  "memories": [
+    {
+      "content": "Python Type Hints 2025: Always use type hints in function signatures. Use `list[str]` not `List[str]` (Python 3.9+). Use `X | Y` for unions (Python 3.10+). Run mypy in CI. Use Pydantic for runtime validation. Beartype for zero-overhead runtime checks.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["python", "typing", "best-practices"]
+    },
+    {
+      "content": "Python Async Pattern: Use asyncio for I/O-bound tasks (network, files, databases). Use `asyncio.gather()` for concurrent execution. Offload CPU-bound work to `concurrent.futures.ThreadPoolExecutor`. Never block the event loop with sync calls.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["python", "async", "performance"]
+    },
+    {
+      "content": "Python 2025 Tool Stack: Ruff for linting (replaces flake8, isort, pyupgrade). Poetry or uv for dependency management. pyproject.toml for config (not setup.py). Black for formatting. mypy for type checking. pytest for testing.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["python", "tools", "workflow"]
+    },
+    {
+      "content": "FastAPI Performance: 30x faster than Flask (17ms vs 507ms per request). Built on Starlette + Pydantic. Auto-generates OpenAPI docs. Use async endpoints for I/O operations. Use dependency injection for clean architecture.",
+      "type": "fact",
+      "importance": 0.8,
+      "tags": ["python", "fastapi", "performance"]
+    },
+    {
+      "content": "TypeScript Strict Mode: Always enable `strict: true` in tsconfig.json. Add `noUncheckedIndexedAccess` and `exactOptionalPropertyTypes`. Use `unknown` instead of `any`. Let TypeScript infer obvious types. Use discriminated unions for state.",
+      "type": "pattern",
+      "importance": 0.9,
+      "tags": ["typescript", "typing", "best-practices"]
+    },
+    {
+      "content": "TypeScript Interface vs Type: Use `interface` for object shapes and class contracts (supports declaration merging). Use `type` for unions, intersections, primitives, and complex tuples. Interfaces for OOP, types for FP.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["typescript", "patterns"]
+    },
+    {
+      "content": "Git Commit Best Practice: Atomic commits (one logical change). Conventional commits format: `type(scope): description`. Types: feat, fix, docs, style, refactor, test, chore. Write WHY in commit body, not just WHAT.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["git", "workflow"]
+    },
+    {
+      "content": "Code Review Checklist: 1) Does it work? 2) Is it tested? 3) Is it readable? 4) Is it maintainable? 5) Is it secure? 6) Does it follow project conventions? Review for learning, not gatekeeping.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["code-review", "quality"]
+    },
+    {
+      "content": "Small PR Rule: Keep PRs under 400 lines. Easier to review, faster to merge, fewer conflicts. Break large features into vertical slices. Ship incrementally behind feature flags if needed.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["git", "workflow", "productivity"]
+    },
+    {
+      "content": "Testing Pyramid: Many unit tests (fast, isolated), fewer integration tests (slower, real dependencies), minimal E2E tests (slowest, full system). Unit tests catch logic bugs, integration tests catch interface bugs.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["testing", "strategy"]
+    },
+    {
+      "content": "pytest Best Practices: Use fixtures for setup/teardown. Use parametrize for multiple test cases. Use markers for test categories (@pytest.mark.slow). Use conftest.py for shared fixtures. Name tests descriptively: test_should_X_when_Y.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["python", "testing", "pytest"]
+    },
+    {
+      "content": "Error Handling Pattern: Fail fast and loud in development. Handle errors gracefully in production. Log with context (what failed, why, what was the input). Use structured logging (JSON). Never catch and ignore exceptions silently.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["error-handling", "debugging"]
+    },
+    {
+      "content": "Debugging Strategy: 1) Reproduce reliably first. 2) Minimize reproduction case. 3) Form hypothesis. 4) Test hypothesis with print/debugger. 5) Fix and verify. 6) Add test to prevent regression. Don't guess - measure.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["debugging", "methodology"]
+    },
+    {
+      "content": "API Design Principles: Use nouns for resources, verbs for actions. Return appropriate HTTP status codes. Use pagination for lists. Version your API (v1, v2). Document with OpenAPI/Swagger. Validate input, sanitize output.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["api", "design"]
+    },
+    {
+      "content": "Database Query Optimization: Profile before optimizing. Add indexes for WHERE and JOIN columns. Use EXPLAIN to analyze queries. Avoid N+1 queries (use JOIN or batch fetching). Consider denormalization for read-heavy workloads.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["database", "performance"]
+    },
+    {
+      "content": "Security Checklist: Validate all user input. Use parameterized queries (never string concat). Hash passwords with bcrypt/argon2. Use HTTPS everywhere. Implement rate limiting. Never log sensitive data. Keep dependencies updated.",
+      "type": "pattern",
+      "importance": 0.9,
+      "tags": ["security", "best-practices"]
+    },
+    {
+      "content": "Refactoring Safely: Never refactor without tests. Make one change at a time. Run tests after each change. Use IDE refactoring tools. Commit frequently. If tests break, revert and try smaller steps.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["refactoring", "safety"]
+    },
+    {
+      "content": "Documentation Types: 1) README (what, why, quickstart). 2) API docs (generated from code). 3) Architecture docs (decisions, diagrams). 4) Runbooks (ops procedures). Write docs as you build, not after.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["documentation", "best-practices"]
+    },
+    {
+      "content": "Dependency Management: Pin exact versions in lockfile. Update dependencies regularly (weekly/monthly). Use Dependabot/Renovate for automated PRs. Check for security vulnerabilities. Minimize dependency count.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["dependencies", "security"]
+    },
+    {
+      "content": "Performance Optimization Order: 1) Profile first (don't guess). 2) Optimize algorithms (O(n) vs O(n²)). 3) Reduce I/O (batch, cache). 4) Parallelize if CPU-bound. 5) Micro-optimize only if proven bottleneck.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["performance", "optimization"]
+    },
+    {
+      "content": "Environment Configuration: Use .env files for local dev. Use environment variables in production. Never commit secrets. Use tools like direnv for auto-loading. Validate required config at startup.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["configuration", "security"]
+    },
+    {
+      "content": "Logging Best Practices: Use structured logs (JSON). Include correlation IDs for tracing. Log at appropriate levels (DEBUG, INFO, WARN, ERROR). Include context (user_id, request_id). Don't log PII/secrets.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["logging", "observability"]
+    },
+    {
+      "content": "CLI Tool Design: Use argparse/click/typer. Provide --help for all commands. Use sensible defaults. Support --verbose and --quiet. Return proper exit codes. Provide progress feedback for long operations.",
+      "type": "pattern",
+      "importance": 0.75,
+      "tags": ["cli", "design"]
+    },
+    {
+      "content": "Code Organization: Group by feature, not by type. Keep related code close together. Use clear, descriptive names. Limit file size (under 500 lines). One class/module per file. Export public API explicitly.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["architecture", "organization"]
+    },
+    {
+      "content": "SOLID Principles Summary: S-Single responsibility (one reason to change). O-Open/closed (extend, don't modify). L-Liskov substitution (subtypes are substitutable). I-Interface segregation (small interfaces). D-Dependency inversion (depend on abstractions).",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["architecture", "principles"]
+    }
+  ],
+  "relationships": [
+    {"source": "entity:blocker:technical debt", "target": "entity:goal:superior code quality", "type": "blocks"},
+    {"source": "entity:blocker:missing tests", "target": "entity:goal:superior code quality", "type": "blocks"},
+    {"source": "entity:blocker:missing tests", "target": "entity:goal:fast iteration", "type": "blocks"},
+    {"source": "entity:blocker:poor documentation", "target": "entity:goal:fast iteration", "type": "blocks"},
+    {"source": "entity:pattern:type safety first", "target": "entity:blocker:technical debt", "type": "blocks"},
+    {"source": "entity:pattern:test-driven development", "target": "entity:blocker:missing tests", "type": "blocks"},
+    {"source": "entity:pattern:small prs", "target": "entity:goal:fast iteration", "type": "enables"},
+    {"source": "entity:phase:design", "target": "entity:phase:implement", "type": "enables"},
+    {"source": "entity:phase:implement", "target": "entity:phase:review", "type": "enables"},
+    {"source": "entity:phase:review", "target": "entity:phase:deploy", "type": "enables"}
+  ]
+}

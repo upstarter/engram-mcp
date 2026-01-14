@@ -1,0 +1,165 @@
+# ChainMind Integration Configuration
+# ===================================
+#
+# Configuration for ChainMind helper tools in engram-mcp.
+# This file is optional - defaults will be used if not present.
+# Can also be configured via environment variables (CHAINMIND_*)
+
+# Enable ChainMind integration
+enabled: true
+
+# Model selection strategy
+model_selection:
+  # IMPORTANT: Claude Code already uses Claude API by default
+  # ChainMind is ONLY called when Claude Code's Claude API hits token limits
+  # Therefore: Skip Claude, go straight to cost-optimized fallback
+
+  # Use smart routing for automatic model selection (recommended)
+  # When enabled, ChainMind analyzes tasks and selects best fallback:
+  # - Cost optimization: Selects cheapest model that meets requirements
+  # - Local models prioritized when appropriate (free)
+  # - API models used only when needed for quality
+  auto_select_enabled: true  # Enable smart routing by default
+
+  # Strategy: auto, prefer_claude, cost_optimize, performance_optimize, balanced
+  # AUTO: Uses capability_match normally, switches to cost_optimize when budget exceeded
+  default_strategy: auto  # Auto-select best fallback (skip Claude since already tried)
+
+  # Provider priority: API models FIRST (quality), local models when budget exceeded
+  prefer_api_models: true  # Prioritize API models for quality, fallback to local when budget exceeded
+  skip_claude: true  # Skip Claude since Claude Code already tried it
+
+# Fallback providers (ONLY used when Claude Code's Claude API hits token limits)
+# IMPORTANT: Claude Code already uses Claude API by default
+# When Claude Code's Claude API hits limits, ChainMind is called as fallback
+# PRIMARY FALLBACK: OpenAI (since Claude Code already tried Claude)
+# LAST RESORT: Local models (when OpenAI unavailable)
+fallback_providers:
+  - openai  # Primary fallback (Claude Code already tried Claude, so skip to OpenAI)
+  - ollama  # Last resort fallback (local, lower quality)
+
+# Resource limits
+max_tokens_per_request: null  # null = no limit, or set max tokens per request
+max_cost_per_request: null    # null = no limit, or set max cost per request (USD)
+request_timeout_seconds: 60.0  # Timeout for requests in seconds
+
+# Advanced Cost Optimization Features
+# ===================================
+# These features are enabled by default ONLY when budget constraints are exceeded.
+# Set enable_always: true to enable them all the time.
+
+cost_optimization:
+  # Enable cost optimization features
+  # - "budget_only": Only when budget constraints exceeded (default)
+  # - "always": Always optimize for cost
+  # - "disabled": Never optimize for cost
+  mode: budget_only  # Default: only when budget exceeded
+
+  # Advanced features (all enabled by default when mode is active)
+  features:
+    # Token estimation before model selection
+    token_estimation: true
+
+    # Total cost calculation (input + output tokens)
+    total_cost_calculation: true
+
+    # Quality/cost tradeoff analysis
+    quality_cost_tradeoff: true
+
+    # Historical cost tracking and learning
+    historical_tracking: true
+
+    # Task-specific cost strategies
+    task_specific_strategies: true
+
+    # Batch cost optimization
+    batch_optimization: true
+
+  # Quality/cost tradeoff settings
+  quality_cost_tradeoff:
+    # Weight for quality vs cost (0.0 = cost only, 1.0 = quality only)
+    # When budget exceeded: 0.3 (prioritize cost)
+    # Normal operation: 0.7 (prioritize quality)
+    quality_weight: 0.3  # When cost optimizing
+    cost_weight: 0.7  # When cost optimizing
+
+    # Minimum quality threshold (0.0-1.0)
+    # Models below this threshold won't be selected even if cheaper
+    min_quality_threshold: 0.5
+
+  # Historical cost tracking
+  historical_tracking:
+    # Track costs per model/provider
+    enabled: true
+
+    # Learn optimal selections from history
+    learning_enabled: true
+
+    # History size (number of requests to track)
+    history_size: 1000
+
+  # Task-specific cost strategies
+  task_specific:
+    # Different cost strategies per task type
+    coding:
+      prefer_local: true  # Prefer local models for coding (often free)
+      max_cost_per_1k_tokens: 0.001  # $0.001 per 1K tokens
+
+    reasoning:
+      prefer_local: false  # May need API quality for reasoning
+      max_cost_per_1k_tokens: 0.01  # $0.01 per 1K tokens
+
+    creative:
+      prefer_local: true  # Local models often sufficient
+      max_cost_per_1k_tokens: 0.002  # $0.002 per 1K tokens
+
+    general:
+      prefer_local: true  # Prefer local for general tasks
+      max_cost_per_1k_tokens: 0.001  # $0.001 per 1K tokens
+
+# Response caching
+cache_size: 100  # Number of responses to cache (LRU)
+
+# Fallback behavior when Claude hits usage limits
+fallback:
+  # Automatically fallback on usage limit errors
+  auto_fallback: true
+
+  # Report fallback status to Claude
+  report_status: true
+
+# Prompt generation settings
+prompt_generation:
+  # Default strategy: concise, detailed, structured, balanced
+  default_strategy: balanced
+
+  # Maximum memories to include in prompts
+  max_context_memories: 5
+
+  # Include project context automatically
+  include_project_context: true
+
+# Verification settings
+verification:
+  # Default verification providers
+  default_providers:
+    - openai
+
+  # Confidence threshold (0.0-1.0)
+  confidence_threshold: 0.8
+
+# Error handling
+error_handling:
+  # Gracefully degrade if ChainMind unavailable
+  graceful_degradation: true
+
+  # Log errors to stderr
+  log_errors: true
+
+# Circuit breaker settings
+circuit_breaker:
+  # Failure threshold before opening circuit
+  failure_threshold: 3
+
+  # Recovery timeout in seconds
+  recovery_timeout: 60.0

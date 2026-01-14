@@ -1,0 +1,174 @@
+{
+  "metadata": {
+    "name": "AI/ML Development Mastery",
+    "version": "1.0",
+    "created": "2025-01-10",
+    "category": "ai_ml_development"
+  },
+  "entities": [
+    {"type": "goal", "name": "Efficient Model Training", "priority": "P0", "description": "Train models quickly without OOM errors"},
+    {"type": "goal", "name": "Production Inference", "priority": "P0", "description": "Deploy models for fast, reliable inference"},
+    {"type": "blocker", "name": "GPU OOM Errors", "description": "Running out of GPU memory during training/inference"},
+    {"type": "blocker", "name": "Slow Training", "description": "Training takes too long to iterate"},
+    {"type": "blocker", "name": "CUDA Errors", "description": "Driver/toolkit compatibility issues"},
+    {"type": "pattern", "name": "Mixed Precision Training", "description": "Use FP16/BF16 to halve memory usage"},
+    {"type": "pattern", "name": "Gradient Checkpointing", "description": "Trade compute for memory in deep networks"},
+    {"type": "pattern", "name": "Flash Attention", "description": "O(n) memory attention for transformers"}
+  ],
+  "memories": [
+    {
+      "content": "PyTorch OOM Fix #1 - Mixed Precision: Use `torch.cuda.amp.autocast()` for automatic mixed precision. Reduces memory 30-50%. Use GradScaler for stable training. BF16 more stable than FP16 on newer GPUs.",
+      "type": "solution",
+      "importance": 0.9,
+      "tags": ["pytorch", "memory", "optimization"]
+    },
+    {
+      "content": "PyTorch OOM Fix #2 - Gradient Checkpointing: Use `torch.utils.checkpoint.checkpoint()` to trade compute for memory. Saves ~50% memory at ~20% speed cost. Essential for large models on limited VRAM.",
+      "type": "solution",
+      "importance": 0.9,
+      "tags": ["pytorch", "memory", "optimization"]
+    },
+    {
+      "content": "PyTorch OOM Fix #3 - Gradient Accumulation: Simulate larger batch sizes with smaller micro-batches. Accumulate gradients over N steps before optimizer.step(). Maintains training dynamics with less memory.",
+      "type": "solution",
+      "importance": 0.85,
+      "tags": ["pytorch", "memory", "optimization"]
+    },
+    {
+      "content": "PyTorch OOM Fix #4 - Memory Fragmentation: Set PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512 (or PYTORCH_ALLOC_CONF on newer versions). Prevents fragmentation in variable-length sequences. Use `torch.cuda.set_per_process_memory_fraction(0.8)` to reserve headroom.",
+      "type": "solution",
+      "importance": 0.9,
+      "tags": ["pytorch", "memory", "cuda"]
+    },
+    {
+      "content": "torch.cuda.empty_cache() Misconception: Only call between phases (after deleting model, before loading new one). Inside training loops it just adds overhead - memory returns to PyTorch's allocator, not system. Don't use as OOM band-aid.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["pytorch", "memory", "gotcha"]
+    },
+    {
+      "content": "Flash Attention: Reduces attention memory from O(n²) to O(n). Essential for long sequences. Use `torch.nn.functional.scaled_dot_product_attention()` (native in PyTorch 2.0+). Or install flash-attn package for optimized kernels.",
+      "type": "pattern",
+      "importance": 0.9,
+      "tags": ["pytorch", "attention", "performance"]
+    },
+    {
+      "content": "CUDA Debugging: Set CUDA_LAUNCH_BLOCKING=1 for synchronous errors with accurate stack traces. Use torch.cuda.synchronize() before timing. Check nvidia-smi for memory/utilization. Use py-spy for profiling.",
+      "type": "solution",
+      "importance": 0.85,
+      "tags": ["cuda", "debugging"]
+    },
+    {
+      "content": "CUDA Version Compatibility: PyTorch cu118 for CUDA 11.8, cu121 for CUDA 12.1, cu128 for CUDA 12.8 (Blackwell). Check nvidia-smi for driver CUDA version. Install matching torch version with: pip install torch --index-url https://download.pytorch.org/whl/cu128",
+      "type": "fact",
+      "importance": 0.85,
+      "tags": ["cuda", "pytorch", "installation"]
+    },
+    {
+      "content": "RTX 5080 Blackwell Setup: Requires CUDA 12.8+ (cu128). PyTorch nightly with sm_120 support. Use TORCH_CUDA_ARCH_LIST='12.0' for compiling extensions. Check with: python -c 'import torch; print(torch.cuda.get_device_capability())'",
+      "type": "solution",
+      "importance": 0.9,
+      "tags": ["cuda", "rtx5080", "blackwell"]
+    },
+    {
+      "content": "Hugging Face Accelerate: Simplifies distributed training. Auto-detects hardware (CPU, single GPU, multi-GPU, TPU). Use `accelerator.prepare()` for model, optimizer, dataloader. Handles device placement automatically.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["huggingface", "distributed", "training"]
+    },
+    {
+      "content": "Hugging Face Model Loading: Use `device_map='auto'` for automatic sharding across GPUs. Use `torch_dtype=torch.float16` or `torch.bfloat16` for half memory. Use `load_in_8bit=True` or `load_in_4bit=True` for quantization.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["huggingface", "memory", "optimization"]
+    },
+    {
+      "content": "Inference Optimization: Use torch.inference_mode() (faster than torch.no_grad()). Compile model with torch.compile() for 20-40% speedup. Use ONNX Runtime for production. Batch requests for throughput.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["inference", "performance"]
+    },
+    {
+      "content": "torch.compile() Usage: Compiles model for faster execution. Use mode='reduce-overhead' for small batches, mode='max-autotune' for large batches. First run is slow (compilation). Save compiled model for reuse.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["pytorch", "performance", "compile"]
+    },
+    {
+      "content": "Data Loading Optimization: Use num_workers > 0 for parallel loading (start with 4). Use pin_memory=True for GPU training. Use prefetch_factor=2 for pipelining. Profile with torch.profiler to find bottlenecks.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["pytorch", "dataloader", "performance"]
+    },
+    {
+      "content": "Training Loop Best Practices: Use tqdm for progress bars. Log to wandb/tensorboard. Save checkpoints regularly. Use early stopping. Validate on held-out set. Track multiple metrics (loss, accuracy, F1).",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["training", "workflow"]
+    },
+    {
+      "content": "Learning Rate Schedule: Use warmup for first 5-10% of training. Use cosine annealing or linear decay. OneCycleLR often works well. Lower LR for fine-tuning (1e-5 to 5e-5 for pretrained models).",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["training", "hyperparameters"]
+    },
+    {
+      "content": "Model Debugging: Check for NaN/Inf with torch.isnan/isinf. Use gradient clipping (max_norm=1.0). Start with small model/data to verify pipeline. Compare against known good implementation.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["debugging", "training"]
+    },
+    {
+      "content": "Reproducibility: Set seeds for torch, numpy, random. Use torch.backends.cudnn.deterministic=True for exact reproducibility (slower). Log all hyperparameters. Version control configs. Save full environment spec.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["reproducibility", "experiments"]
+    },
+    {
+      "content": "Local LLM Deployment: Use vLLM for serving (PagedAttention for efficient batching). Use llama.cpp for CPU inference. Use text-generation-inference for Hugging Face models. Quantize with GPTQ/AWQ for smaller models.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["llm", "deployment", "inference"]
+    },
+    {
+      "content": "Whisper Transcription: Use faster-whisper (CTranslate2) for 4x speedup. Use batching for multiple files. Use VAD for pre-segmentation. GPU inference much faster than CPU. Use large-v3 for quality, tiny for speed.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["whisper", "transcription", "audio"]
+    },
+    {
+      "content": "Image Generation: Use Stable Diffusion XL for quality. Use LCM/Turbo for speed (4-8 steps). Use ControlNet for guided generation. Use SDXL-Lightning for fastest quality results. Run locally with ComfyUI or diffusers.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["diffusion", "image-generation"]
+    },
+    {
+      "content": "Video Generation: Use CogVideoX for text-to-video. Use Hallo2 for portrait animation. Use MusePose for full-body. Use SadTalker for simple talking head. All require significant VRAM (12GB+).",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["video-generation", "ai"]
+    },
+    {
+      "content": "Voice Cloning: Use Chatterbox for zero-shot voice cloning. Use ElevenLabs for quality (API). Use XTTS for local open-source. Use Bark for music/sound effects. Respect consent and ethical use.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["voice", "tts", "cloning"]
+    },
+    {
+      "content": "Model Evaluation: Use held-out test set (never train on it). Report confidence intervals. Use multiple metrics appropriate for task. Compare against baselines. Watch for data leakage.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["evaluation", "methodology"]
+    }
+  ],
+  "relationships": [
+    {"source": "entity:blocker:gpu oom errors", "target": "entity:goal:efficient model training", "type": "blocks"},
+    {"source": "entity:blocker:slow training", "target": "entity:goal:efficient model training", "type": "blocks"},
+    {"source": "entity:blocker:cuda errors", "target": "entity:goal:efficient model training", "type": "blocks"},
+    {"source": "entity:blocker:gpu oom errors", "target": "entity:goal:production inference", "type": "blocks"},
+    {"source": "entity:pattern:mixed precision training", "target": "entity:blocker:gpu oom errors", "type": "blocks"},
+    {"source": "entity:pattern:gradient checkpointing", "target": "entity:blocker:gpu oom errors", "type": "blocks"},
+    {"source": "entity:pattern:flash attention", "target": "entity:blocker:gpu oom errors", "type": "blocks"},
+    {"source": "entity:pattern:mixed precision training", "target": "entity:blocker:slow training", "type": "blocks"}
+  ]
+}

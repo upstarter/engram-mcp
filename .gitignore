@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.cursor/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Logs and traces
+*.log
+trace_*.json
+
+# Local config
+.env
+.env.local
+*.local.md
+
+# Data
+*.db
+*.sqlite
+data/
+backend/data/
+
+# Empty dirs
+hooks/

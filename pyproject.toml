@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "engram-mcp"
+version = "0.1.0"
+description = "Give your AI assistant a memory. Persistent, semantic, human-inspired."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    { name = "Creator AI Studio", email = "hello@creatoraistudio.com" }
+]
+keywords = ["mcp", "memory", "claude", "ai", "llm", "semantic-search"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.10"
+
+# These are the "ingredients" we need
+dependencies = [
+    "mcp>=1.0.0",              # MCP protocol (how Claude talks to us)
+    "chromadb>=0.4.0",          # Vector database (finds similar memories)
+    "sentence-transformers>=2.2.0",  # Creates embeddings (turns text into numbers)
+]
+
+[project.optional-dependencies]
+# Extra ingredients for developers
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+# Extra ingredients if you have a GPU
+gpu = [
+    "torch>=2.0.0",
+]
+# Extra ingredients for ChainMind integration
+chainmind = [
+    "aiofiles>=23.0.0",  # Required by ChainMind's io_manager
+]
+
+[project.urls]
+Homepage = "https://github.com/creator-ai-studio/engram-mcp"
+Documentation = "https://github.com/creator-ai-studio/engram-mcp#readme"
+Repository = "https://github.com/creator-ai-studio/engram-mcp"
+Issues = "https://github.com/creator-ai-studio/engram-mcp/issues"
+
+# This lets you run: python -m engram.server
+[project.scripts]
+engram = "engram:serve"
+
+[tool.hatch.build.targets.wheel]
+packages = ["engram"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

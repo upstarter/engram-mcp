@@ -1,0 +1,135 @@
+{
+  "metadata": {
+    "name": "StudioFlow Deep Architectural Wisdom",
+    "version": "1.0",
+    "created": "2025-01-10",
+    "category": "project_knowledge",
+    "project": "studioflow",
+    "purpose": "Non-obvious insights that take hours to discover"
+  },
+  "entities": [
+    {"type": "project", "name": "StudioFlow", "description": "Unified CLI for automated video production - transforms raw footage to publishable YouTube content"},
+    {"type": "goal", "name": "Hands-Free Video Editing", "priority": "P0", "description": "Enable creators to mark edit points during recording without touching computer"},
+    {"type": "goal", "name": "Automated Rough Cuts", "priority": "P0", "description": "Generate intelligent first-pass edits from transcript analysis"},
+    {"type": "blocker", "name": "Whisper Transcription Errors", "description": "Audio markers depend 100% on Whisper accuracy - misheard slate/done breaks system"},
+    {"type": "blocker", "name": "GPU Memory Contention", "description": "No coordination between Whisper and FFmpeg GPU usage - concurrent ops can OOM on RTX 5080"},
+    {"type": "blocker", "name": "Resolve API Dependency", "description": "Timeline creation requires Resolve running - can't test without manual startup"},
+    {"type": "pattern", "name": "Audio Marker Commands", "description": "slate [qualifier] [scene] done - parsed from transcript with fuzzy matching"},
+    {"type": "pattern", "name": "Decimal Scene Numbers", "description": "Scene 1.5 sorts between 1 and 2 - enables out-of-order shooting and insertion"},
+    {"type": "pattern", "name": "Service Layer Separation", "description": "CLI commands thin wrapper over core/ services - enables multi-interface and testing"},
+    {"type": "pattern", "name": "Multi-Agent Claude System", "description": "5 specialized Kitty tabs prevent context pollution while enabling parallel workflows"},
+    {"type": "phase", "name": "Ingest", "description": "Copy from SD card with duplicate detection"},
+    {"type": "phase", "name": "Normalize", "description": "FFmpeg standardization of codec, framerate, resolution"},
+    {"type": "phase", "name": "Prepare", "description": "Create proxies, transcripts, detect audio markers, extract segments"}
+  ],
+  "memories": [
+    {
+      "content": "STUDIOFLOW CROWN JEWEL: rough_cut.py (3745 lines, 160KB) is the intellectual center - contains quote extraction with importance scoring, thematic organization for documentaries, 10+ cut styles (doc/interview/tutorial/review), visual content analysis from filename metadata, B-roll matching logic, 4-level quality scoring (skip/fair/good/best). Never modify without understanding full algorithm - it's the proprietary editing logic.",
+      "type": "decision",
+      "importance": 0.95,
+      "tags": ["studioflow", "architecture", "critical"]
+    },
+    {
+      "content": "STUDIOFLOW AUDIO MARKERS: Hands-free editing system parses spoken commands from Whisper transcripts. Format: 'slate [qualifier] [scene] done'. Common commands: 'slate scene one done' (ordered segment), 'slate apply best done' (retroactive quality mark), 'slate take two done' (multiple attempts). Supports decimals (1.5, 2.25) for out-of-order shooting. CRITICAL DEPENDENCY: 100% Whisper accuracy required.",
+      "type": "pattern",
+      "importance": 0.9,
+      "tags": ["studioflow", "audio-markers", "workflow"]
+    },
+    {
+      "content": "STUDIOFLOW WHISPER GOTCHA: Audio marker parsing uses fuzzy matching for common mis-transcriptions: slate→state/slayt/slait, done→don/dun/dunn. See SLATE_VARIANTS in audio_markers.py. System fails SILENTLY when markers not detected - no validation that expected markers were found. Accented speech, background noise, or low audio quality can cause silent marker detection failure.",
+      "type": "solution",
+      "importance": 0.9,
+      "tags": ["studioflow", "whisper", "debugging"]
+    },
+    {
+      "content": "STUDIOFLOW SCENE ORDERING: Decimal scene numbers OVERRIDE chronological timestamp order. Scene 1.5 always sorts between 1.0 and 2.0 regardless of when recorded. This enables: (1) out-of-order shooting - film scene 3 first, (2) insertions - add scene 2.5 after reviewing. GOTCHA: Can confuse if expecting timestamp-based order.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["studioflow", "audio-markers", "editing"]
+    },
+    {
+      "content": "STUDIOFLOW STORAGE PATH RESOLUTION: 3-tier priority system: (1) User config ~/.studioflow/config.yaml - highest, (2) Code defaults in StorageTierSystem - /mnt/studio/PROJECTS, (3) System defaults ~/Videos/StudioFlow/*. GOTCHA: Paths cascade SILENTLY if higher priority doesn't exist. Hard to debug why project lands in unexpected location. 6 storage tiers: ingest→active→render→studio→archive→nas.",
+      "type": "decision",
+      "importance": 0.85,
+      "tags": ["studioflow", "storage", "configuration"]
+    },
+    {
+      "content": "STUDIOFLOW RESOLVE INTEGRATION: resolve_api.py requires Resolve actually RUNNING (not just installed). Path must be /opt/resolve or configured. Scripting must be enabled in Resolve prefs. GRACEFUL DEGRADATION: If unavailable, ResolveDirectAPI.is_connected() returns False, commands skip silently. Tests can't verify this without manual Resolve startup. Projects create but timelines don't populate.",
+      "type": "fact",
+      "importance": 0.9,
+      "tags": ["studioflow", "resolve", "integration"]
+    },
+    {
+      "content": "STUDIOFLOW GPU COORDINATION GAP: Whisper and FFmpeg both use GPU but NO coordination exists between them. First process gets GPU, second waits or falls back to CPU. With RTX 5080 (16GB VRAM), simultaneous transcription + export can OOM. WORKAROUND: Run sequentially. NEEDED: Explicit GPU queueing system (not yet implemented).",
+      "type": "solution",
+      "importance": 0.85,
+      "tags": ["studioflow", "gpu", "performance"]
+    },
+    {
+      "content": "STUDIOFLOW NLP SILENT DEGRADATION: rough_cut.py checks for optional libraries (spacy, textblob, vader, nltk) and SILENTLY operates in degraded mode if missing. Quote extraction works but sentiment analysis skips. NO ERRORS THROWN - easy to think system is working when skipping advanced features. Verify NLP with: python -c 'import spacy; import textblob; import vaderSentiment'",
+      "type": "solution",
+      "importance": 0.8,
+      "tags": ["studioflow", "nlp", "debugging"]
+    },
+    {
+      "content": "STUDIOFLOW MULTI-AGENT ARCHITECTURE: 5 specialized Claude tabs in Kitty session: (1) STUDIOFLOW_AGENT - CLI/workflows, (2) YOUTUBE_GROWTH_AGENT - algorithm/CTR, (3) AI_CONTENT_AGENT - transcription/GPU, (4) STORAGE_MANAGER_AGENT - NAS/backups, (5) QUICK_ACTIONS_AGENT - one-liners. Each loads same base CLAUDE.md + specialized context. Prevents context pollution while enabling parallel workflows.",
+      "type": "decision",
+      "importance": 0.9,
+      "tags": ["studioflow", "architecture", "claude"]
+    },
+    {
+      "content": "STUDIOFLOW UNIFIED IMPORT PIPELINE: 3-phase automation (ingest→normalize→prepare). AUTO-DETERMINES target project via priority: (1) explicit codeword param, (2) SD card label parsed from lsblk, (3) active project in StateManager, (4) default 'import-YYYYMMDD'. Enables dumping multiple SD cards without specifying destinations. Includes duplicate detection, FFmpeg normalization, proxy generation, transcript creation.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["studioflow", "import", "workflow"]
+    },
+    {
+      "content": "STUDIOFLOW FILENAME METADATA: Visual content analysis operates on METADATA FROM FILENAMES, not actual video analysis. Prefixes: SCREEN_ (screen capture), STEP##_ (tutorial steps), HOOK_ (hook shots), MISTAKE_ (blooper). Combined with audio markers for editorial decisions. Hands-free editing works via: (1) filename prefixes during transfer, (2) audio markers during recording.",
+      "type": "pattern",
+      "importance": 0.85,
+      "tags": ["studioflow", "metadata", "editing"]
+    },
+    {
+      "content": "STUDIOFLOW ARCHITECTURAL CONSTRAINTS: (1) Single-user local-first - no multi-user collab without major refactor, (2) File-based not database - JSON state in project folders, no ACID guarantees, concurrent edits can corrupt, (3) Transcription mandatory for rough cuts - can't use on silent footage, (4) CLI-centric not library - embedding possible but services assume CLI execution, (5) Rigid 6-tier storage - custom tiers need code changes.",
+      "type": "decision",
+      "importance": 0.9,
+      "tags": ["studioflow", "architecture", "constraints"]
+    },
+    {
+      "content": "STUDIOFLOW ROUGH CUT STYLES: 10 specialized cut algorithms in rough_cut.py: doc (documentary narrative), interview (multi-speaker), episode (youtube format), tutorial (step-by-step), review (product analysis), unboxing (reveal pacing), comparison (A vs B structure), setup (technical walkthrough), explainer (concept teaching). Each has different pacing, B-roll logic, and structural expectations.",
+      "type": "fact",
+      "importance": 0.8,
+      "tags": ["studioflow", "rough-cut", "editing"]
+    },
+    {
+      "content": "STUDIOFLOW PYDANTIC VALIDATION: Config validated at LOAD time, not usage time. Type mismatches or invalid paths throw IMMEDIATELY on CLI startup. Classes: ProjectMetadata, StorageConfig, ResolveConfig, Config, ParsedCommands. Benefits: type safety, auto-generated help text, validation rules. GOTCHA: Broken config prevents ANY sf command from running.",
+      "type": "fact",
+      "importance": 0.8,
+      "tags": ["studioflow", "config", "pydantic"]
+    },
+    {
+      "content": "STUDIOFLOW CRITICAL FILE MAP: rough_cut.py (3745 lines) - editing engine CRITICAL, unified_import.py (802 lines) - SD to project HIGH, ffmpeg.py (910 lines) - codec handling HIGH, resolve_api.py (547 lines) - Resolve integration HIGH, marker_commands.py (504 lines) - audio parsing MEDIUM, audio_markers.py (455 lines) - transcript analysis MEDIUM, project.py (726 lines) - project lifecycle MEDIUM, media.py (728 lines) - file handling MEDIUM.",
+      "type": "fact",
+      "importance": 0.85,
+      "tags": ["studioflow", "codebase", "files"]
+    },
+    {
+      "content": "STUDIOFLOW AGENT LOADING: Each Claude agent in .claude/agents/ directory. Load with @/mnt/dev/video/studioflow/.claude/agents/AGENT_NAME.md in Claude Code. All agents share Eric's base CLAUDE.md profile. STUDIOFLOW_AGENT for CLI (4.5KB), YOUTUBE_GROWTH_AGENT for algorithm (7KB), AI_CONTENT_AGENT for transcription (7.5KB), STORAGE_MANAGER_AGENT for NAS (8.4KB), QUICK_ACTIONS_AGENT for one-liners (7.2KB).",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["studioflow", "claude", "agents"]
+    }
+  ],
+  "relationships": [
+    {"source": "entity:blocker:whisper transcription errors", "target": "entity:goal:hands-free video editing", "type": "blocks"},
+    {"source": "entity:blocker:whisper transcription errors", "target": "entity:goal:automated rough cuts", "type": "blocks"},
+    {"source": "entity:blocker:gpu memory contention", "target": "entity:goal:automated rough cuts", "type": "blocks"},
+    {"source": "entity:blocker:resolve api dependency", "target": "entity:goal:automated rough cuts", "type": "blocks"},
+    {"source": "entity:pattern:audio marker commands", "target": "entity:goal:hands-free video editing", "type": "enables"},
+    {"source": "entity:pattern:decimal scene numbers", "target": "entity:goal:hands-free video editing", "type": "enables"},
+    {"source": "entity:pattern:service layer separation", "target": "entity:project:studioflow", "type": "part_of"},
+    {"source": "entity:pattern:multi-agent claude system", "target": "entity:project:studioflow", "type": "part_of"},
+    {"source": "entity:phase:ingest", "target": "entity:phase:normalize", "type": "enables"},
+    {"source": "entity:phase:normalize", "target": "entity:phase:prepare", "type": "enables"}
+  ]
+}

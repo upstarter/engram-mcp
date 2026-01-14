@@ -1,0 +1,311 @@
+{
+  "metadata": {
+    "name": "YouTube Mastery Seed Knowledge",
+    "version": "1.0",
+    "created": "2025-01-10",
+    "sources": [
+      "https://blog.hootsuite.com/youtube-algorithm/",
+      "https://www.lenostube.com/en/youtube-cpm-rpm-rates/",
+      "https://vidiq.com/blog/post/youtube-thumbnail-design-tips/",
+      "https://adopter.media/youtube-sponsorship-guide/",
+      "https://hellothematic.com/how-copyright-works-on-youtube/"
+    ],
+    "category": "youtube_production"
+  },
+  "entities": [
+    {
+      "type": "goal",
+      "name": "YouTube Monetization",
+      "priority": "P0",
+      "description": "Achieve 1000 subscribers + 4000 watch hours OR 10M Shorts views in 90 days"
+    },
+    {
+      "type": "goal",
+      "name": "Channel Growth",
+      "priority": "P0",
+      "description": "Consistent subscriber and view growth through algorithm optimization"
+    },
+    {
+      "type": "goal",
+      "name": "Sponsor Attraction",
+      "priority": "P1",
+      "description": "Attract brand deals through niche authority and engagement rates"
+    },
+    {
+      "type": "blocker",
+      "name": "Low CTR",
+      "description": "Click-through rate below 4% kills video reach regardless of content quality"
+    },
+    {
+      "type": "blocker",
+      "name": "Poor Retention",
+      "description": "Retention below 50% signals bad content to algorithm, killing recommendations"
+    },
+    {
+      "type": "blocker",
+      "name": "Copyright Strikes",
+      "description": "3 strikes in 90 days = channel termination"
+    },
+    {
+      "type": "blocker",
+      "name": "Inconsistent Publishing",
+      "description": "Algorithm punishes gaps; channel momentum requires regular uploads"
+    },
+    {
+      "type": "phase",
+      "name": "Research",
+      "description": "Topic validation, keyword research, competitor analysis"
+    },
+    {
+      "type": "phase",
+      "name": "Scripting",
+      "description": "Hook + body + CTA structure, retention optimization"
+    },
+    {
+      "type": "phase",
+      "name": "Recording",
+      "description": "A-roll, B-roll, screen capture, audio quality"
+    },
+    {
+      "type": "phase",
+      "name": "Editing",
+      "description": "Pacing, cuts, graphics, sound design"
+    },
+    {
+      "type": "phase",
+      "name": "Packaging",
+      "description": "Thumbnail + title optimization for CTR"
+    },
+    {
+      "type": "phase",
+      "name": "Publishing",
+      "description": "SEO, scheduling, description, tags, end screens"
+    },
+    {
+      "type": "pattern",
+      "name": "Face+Emotion Thumbnail",
+      "description": "Close-up face with strong emotion (shock, excitement) + 1-3 words increases CTR 20-30%"
+    },
+    {
+      "type": "pattern",
+      "name": "Hook-First Script",
+      "description": "First 10 seconds must hook; retention drops 20% if intro is weak"
+    },
+    {
+      "type": "pattern",
+      "name": "8+ Minute Videos",
+      "description": "Videos 8+ minutes enable mid-roll ads, increasing CPM 40-60%"
+    }
+  ],
+  "memories": [
+    {
+      "content": "YouTube Algorithm 2025 Core Principle: Algorithm judges CHANNELS not individual videos. Pattern consistency matters more than viral spikes. Build channel identity, not one-hit wonders.",
+      "type": "pattern",
+      "importance": 0.9,
+      "tags": ["algorithm", "strategy"]
+    },
+    {
+      "content": "YouTube Algorithm Key Metrics (2025): 1) Click-through rate (CTR) - aim for 4-10%, 2) Watch time & retention - aim for 50-70%, 3) Engagement - likes, comments, shares in first 24h, 4) Session time - do viewers watch more YouTube after your video?",
+      "type": "fact",
+      "importance": 0.9,
+      "tags": ["algorithm", "metrics"]
+    },
+    {
+      "content": "Retention Benchmarks: 50-60% retention = solid. 70%+ retention = priority in suggested videos. First 10 seconds are critical - this is where most drop-off happens. Hook immediately or lose viewers.",
+      "type": "pattern",
+      "importance": 0.9,
+      "tags": ["retention", "algorithm"]
+    },
+    {
+      "content": "YouTube Monetization Requirements 2025: Standard YPP requires 1,000 subscribers AND either 4,000 public watch hours in 12 months OR 10 million Shorts views in 90 days. Must comply with all monetization policies.",
+      "type": "fact",
+      "importance": 0.9,
+      "tags": ["monetization", "requirements"]
+    },
+    {
+      "content": "CPM by Niche (2025 averages): Finance $10-30, Technology $5-15, Education $5-12, Health/Fitness $3-10, Gaming $1-5. Average overall CPM ~$3.50. Tech/AI tutorials are high-CPM sweet spot.",
+      "type": "fact",
+      "importance": 0.8,
+      "tags": ["monetization", "cpm", "niche"]
+    },
+    {
+      "content": "RPM Reality Check: If CPM is $10, RPM (what you actually earn) is ~$5.50 after YouTube's 45% cut. Shorts RPM is brutal: $0.01-$0.06 per 1000 views. Long-form is where the money is.",
+      "type": "fact",
+      "importance": 0.8,
+      "tags": ["monetization", "rpm"]
+    },
+    {
+      "content": "Q4 CPM Boost: October-December CPMs increase 60-120% due to holiday advertising budgets. Plan your best content for Q4. Worst time to start a channel: January (CPM crash).",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["monetization", "timing", "strategy"]
+    },
+    {
+      "content": "Thumbnail Formula That Works: Face with strong emotion (shock/excitement/curiosity) + 1-3 bold words + high contrast colors (yellow, orange stand out). VidIQ data shows this increases CTR 20-30%.",
+      "type": "pattern",
+      "importance": 0.9,
+      "tags": ["thumbnail", "ctr", "packaging"]
+    },
+    {
+      "content": "MrBeast Thumbnail Insight: It's HOW you show your face, not WHETHER you show it. Closed-mouth expressions tested better than open-mouth. Extreme expressions + simplified text (1-2 words) + dramatic color contrast.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["thumbnail", "ctr"]
+    },
+    {
+      "content": "Thumbnail Mobile-First Rule: Most YouTube views are mobile. Keep text minimal (3 words max), make it readable at tiny sizes. One focal point, clean design. Test with YouTube's Test & Compare feature (up to 3 thumbnails).",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["thumbnail", "mobile"]
+    },
+    {
+      "content": "Title Formula: First 45-50 characters visible on mobile (truncation point). Structure: Keyword-rich first half | Engaging hook. Power words: Secret, Hidden, Shocking (curiosity), Now, Fast (urgency), Expert, Best, Proven (authority).",
+      "type": "pattern",
+      "importance": 0.9,
+      "tags": ["title", "ctr", "seo"]
+    },
+    {
+      "content": "Ethical Clickbait Rule: Only promise what video delivers. Misleading titles kill retention, which kills recommendations. Phrasing as questions works: 'Can I do X?' instead of 'I did X!' if outcome uncertain.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["title", "ethics"]
+    },
+    {
+      "content": "Copyright Strike vs Claim: Content ID CLAIMS are automated, don't hurt channel, just affect monetization. COPYRIGHT STRIKES are manual, legal, serious. 3 strikes in 90 days = channel termination + ban from creating new channels.",
+      "type": "fact",
+      "importance": 0.9,
+      "tags": ["copyright", "legal"]
+    },
+    {
+      "content": "Copyright Avoidance: Use licensed/royalty-free content ONLY. Fair use is legally complex - don't rely on it without lawyer advice. Even private/unlisted videos get scanned by Content ID. 2025 update: AI commentary without transformation = policy violation.",
+      "type": "solution",
+      "importance": 0.9,
+      "tags": ["copyright", "legal"]
+    },
+    {
+      "content": "Copyright Strike Recovery: Strikes expire in 90 days IF you complete Copyright School AND have fewer than 3 strikes. Can also get retraction from rights holder or submit counter-notification if legitimate fair use.",
+      "type": "solution",
+      "importance": 0.8,
+      "tags": ["copyright", "recovery"]
+    },
+    {
+      "content": "Sponsor Requirements (2025): YouTube BrandConnect requires 25K+ subscribers, no community strikes, YPP membership, policy compliance. But you can get sponsors directly with smaller audiences if niche-relevant and high engagement.",
+      "type": "fact",
+      "importance": 0.8,
+      "tags": ["sponsors", "requirements"]
+    },
+    {
+      "content": "Sponsor Value Insight: Niche authority beats raw views. A 50K-view fitness creator can charge more than 200K-view general vlogger because audience-brand alignment drives conversions. Engagement rate matters more than subscriber count.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["sponsors", "value"]
+    },
+    {
+      "content": "Sponsor Deal Models: 1) Flat rate - fixed fee per video ($hundreds to $thousands based on reach), 2) Commission/affiliate - 10-20% of sales via tracking link, 3) Hybrid - base fee + performance bonus. Commission aligns incentives.",
+      "type": "fact",
+      "importance": 0.7,
+      "tags": ["sponsors", "deals"]
+    },
+    {
+      "content": "FTC Sponsor Disclosure Rules: Verbal disclosure in first 30 seconds. Written disclaimer in description: 'Sponsored by [Brand]' - not vague language. Use YouTube's 'Paid Promotion' checkbox. Non-compliance = legal risk.",
+      "type": "fact",
+      "importance": 0.9,
+      "tags": ["sponsors", "legal", "ftc"]
+    },
+    {
+      "content": "YouTube Dynamic Sponsorship Slots (2025): New feature allows inserting sponsor content for set time period, then re-selling slot to new sponsor. Maximizes earning potential of evergreen videos. Game-changer for long-term monetization.",
+      "type": "fact",
+      "importance": 0.8,
+      "tags": ["sponsors", "features"]
+    },
+    {
+      "content": "AI Tools Stack for YouTube (2025): Scripting: ChatGPT Plus ($20/mo). Thumbnails: Canva Pro ($13/mo) or Midjourney. Editing: Descript ($24/mo) or CapCut (free). Voice: ElevenLabs (free tier 10K chars). 83% of creators now use AI in workflow.",
+      "type": "solution",
+      "importance": 0.8,
+      "tags": ["ai", "tools", "workflow"]
+    },
+    {
+      "content": "AI Content Warning (2025): YouTube updated policies July 2025 - 'inauthentic content' including AI commentary, reaction clips, compilations without clear transformation/editing/value-add impacts revenue sharing. AI must ASSIST, not REPLACE creator value.",
+      "type": "fact",
+      "importance": 0.9,
+      "tags": ["ai", "policy", "copyright"]
+    },
+    {
+      "content": "Tech/AI Niche Opportunity: AI tutorials exploding because 75% of business leaders now use generative AI but need guidance. Monetization paths: Affiliate marketing ($500-2000/mo), Sponsored reviews ($1500-3000 each), Courses ($50-200/student).",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["niche", "ai", "monetization"]
+    },
+    {
+      "content": "Low Competition Tech Niches: Digital minimalism, niche software tutorials (one specific tool deep-dives), budget tech reviews. Key: Pick ONE tool and go deep. Canva AI tips, CapCut tricks, ChatGPT automation. Clarity beats breadth.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["niche", "strategy"]
+    },
+    {
+      "content": "Shorts Strategy: Use Shorts for DISCOVERY, long-form for ENGAGEMENT and MONETIZATION. Shorts RPM is $0.01-0.06 (terrible). But Shorts can funnel viewers to long-form. 30-second Short with 85% retention beats 60-second with 50%.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["shorts", "strategy"]
+    },
+    {
+      "content": "Hook Structure That Works: Pattern interrupt in first 3 seconds (visual or audio surprise), then promise/preview of value, then loop open (create curiosity gap). Never start with 'Hey guys' - instant retention killer.",
+      "type": "pattern",
+      "importance": 0.9,
+      "tags": ["scripting", "hook", "retention"]
+    },
+    {
+      "content": "Script Structure for Tutorials: 1) Hook with outcome/transformation (10 sec), 2) Credibility/why listen to you (10 sec), 3) Overview of what you'll cover (20 sec), 4) Content with clear chapters, 5) CTA + next video tease. Match expectations set by title/thumbnail.",
+      "type": "pattern",
+      "importance": 0.8,
+      "tags": ["scripting", "structure"]
+    },
+    {
+      "content": "Packaging Principle: Many creators spend hours filming/editing but minutes on titles/thumbnails. This is BACKWARDS. Packaging determines if people click. Best content means nothing if CTR is low. Spend 30%+ of effort on packaging.",
+      "type": "philosophy",
+      "importance": 0.9,
+      "tags": ["packaging", "priority"]
+    },
+    {
+      "content": "Algorithm Personalization (2025): Recommendations shaped by viewer's long-term watch history, session habits, and interaction patterns over time. Your job: Make content so good that viewers watch multiple videos per session (session time is key metric).",
+      "type": "fact",
+      "importance": 0.8,
+      "tags": ["algorithm", "personalization"]
+    },
+    {
+      "content": "Subscriber Loyalty > Viral Spikes: Viral videos create spikes but not fans. Loyal subscribers drive consistent views, better engagement, sponsor appeal. Build relationship through series, community posts, consistent upload schedule.",
+      "type": "philosophy",
+      "importance": 0.8,
+      "tags": ["strategy", "growth"]
+    },
+    {
+      "content": "A/B Testing Tools: TubeBuddy for title A/B testing (7 days, compare CTR/watch time). YouTube native Test & Compare for thumbnails (up to 3 variants). Data beats intuition. Test everything.",
+      "type": "solution",
+      "importance": 0.7,
+      "tags": ["tools", "testing"]
+    },
+    {
+      "content": "Geographic Targeting for CPM: Tier 1 countries (US, UK, Canada, Australia) pay premium ad rates. If making English content, optimize for these markets. Posting time: 2-4pm EST hits US prime time + catches UK evening.",
+      "type": "pattern",
+      "importance": 0.7,
+      "tags": ["monetization", "geographic"]
+    }
+  ],
+  "relationships": [
+    {"source": "entity:blocker:low ctr", "target": "entity:goal:channel growth", "type": "blocks"},
+    {"source": "entity:blocker:poor retention", "target": "entity:goal:channel growth", "type": "blocks"},
+    {"source": "entity:blocker:poor retention", "target": "entity:goal:youtube monetization", "type": "blocks"},
+    {"source": "entity:blocker:copyright strikes", "target": "entity:goal:youtube monetization", "type": "blocks"},
+    {"source": "entity:blocker:inconsistent publishing", "target": "entity:goal:channel growth", "type": "blocks"},
+    {"source": "entity:pattern:face+emotion thumbnail", "target": "entity:blocker:low ctr", "type": "blocks"},
+    {"source": "entity:pattern:hook-first script", "target": "entity:blocker:poor retention", "type": "blocks"},
+    {"source": "entity:pattern:8+ minute videos", "target": "entity:goal:youtube monetization", "type": "enables"},
+    {"source": "entity:phase:research", "target": "entity:phase:scripting", "type": "enables"},
+    {"source": "entity:phase:scripting", "target": "entity:phase:recording", "type": "enables"},
+    {"source": "entity:phase:recording", "target": "entity:phase:editing", "type": "enables"},
+    {"source": "entity:phase:editing", "target": "entity:phase:packaging", "type": "enables"},
+    {"source": "entity:phase:packaging", "target": "entity:phase:publishing", "type": "enables"},
+    {"source": "entity:goal:channel growth", "target": "entity:goal:youtube monetization", "type": "enables"},
+    {"source": "entity:goal:youtube monetization", "target": "entity:goal:sponsor attraction", "type": "enables"}
+  ]
+}
