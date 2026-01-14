@@ -18,7 +18,7 @@ from datetime import datetime
 from collections import OrderedDict
 
 # Add ChainMind to path (configurable via env var)
-CHAINMIND_PATH = os.environ.get("CHAINMIND_PATH", "/mnt/dev/ai/ai-platform/chainmind")
+CHAINMIND_PATH = os.environ.get("CHAINMIND_PATH", "/mnt/dev/ai/chainmind")
 if CHAINMIND_PATH and os.path.isdir(CHAINMIND_PATH) and CHAINMIND_PATH not in sys.path:
     sys.path.insert(0, CHAINMIND_PATH)
 
