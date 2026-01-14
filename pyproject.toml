@@ -23,11 +23,12 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 
-# These are the "ingredients" we need
+# Core dependencies - keep loose for upgrades
 dependencies = [
-    "mcp>=1.0.0",              # MCP protocol (how Claude talks to us)
-    "chromadb>=0.4.0",          # Vector database (finds similar memories)
-    "sentence-transformers>=2.2.0",  # Creates embeddings (turns text into numbers)
+    "mcp>=1.0.0",
+    "chromadb>=0.4.24",               # NOTE: 0.5+ needs DB migration, numpy 2.0 compat
+    "sentence-transformers>=2.2.0",
+    "aiohttp>=3.9.0",                 # for Ollama routing
 ]
 
 [project.optional-dependencies]
