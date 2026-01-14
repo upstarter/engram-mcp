@@ -71,3 +71,4 @@ echo "  docs/chainmind-integration/ - ChainMind integration docs"
 echo "  docs/setup/ - Setup and installation guides"
 echo "  docs/testing/ - Testing documentation"
 echo "  docs/guides/ - User guides and workflows"
+

@@ -539,3 +539,4 @@ if __name__ == "__main__":
         print_error(f"Fatal error: {e}")
         traceback.print_exc()
         sys.exit(1)
+

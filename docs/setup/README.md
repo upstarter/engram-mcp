@@ -51,3 +51,4 @@ python -c "from engram.chainmind_helper import ChainMindHelper; h = ChainMindHel
 
 - [Setup Checklist](./SETUP_CHECKLIST.md) - Detailed checklist
 - [Install ChainMind Dependencies](./INSTALL_CHAINMIND_DEPS.md) - Dependency installation
+

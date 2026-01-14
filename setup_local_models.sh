@@ -99,3 +99,4 @@ echo "   2. Models are configured as fallback providers in ChainMind"
 echo "   3. They will be used automatically when OpenAI/Claude are unavailable"
 echo ""
 echo "💡 Note: These models are fallback only. OpenAI/Claude are prioritized for quality."
+

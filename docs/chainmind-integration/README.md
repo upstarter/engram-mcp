@@ -67,3 +67,4 @@ cost_optimization:
 - [How ChainMind Selects Models](./HOW_CHAINMIND_SELECTS_MODELS.md) - Model selection explained
 - [ChainMind Setup](./CHAINMIND_SETUP.md) - Setup instructions
 - [ChainMind Disable](./CHAINMIND_DISABLE.md) - How to disable
+
