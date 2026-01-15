@@ -304,6 +304,9 @@ class MemoryStore:
                 source_role="ai-dev"
             )
         """
+        # Clamp importance to valid range [0.0, 1.0]
+        importance = max(0.0, min(1.0, importance))
+
         # Check for contradictions if requested
         if check_conflicts:
             conflicts = self.check_contradictions(content, project=project)
@@ -691,20 +694,24 @@ class MemoryStore:
                     match_ratio = keyword_matches / len(query_keywords)
                     keyword_boost = 1.0 + (match_ratio * 0.25)  # Up to 25% boost for full match
 
-                # Composite score:
-                # - 40% semantic similarity (core relevance)
-                # - 20% importance (user-assigned weight)
-                # - 15% temporal freshness (decay)
-                # - 10% reinforcement (access frequency)
-                # - 15% keyword match (hybrid search boost)
+                # Composite score (similarity-dominant):
+                # - Similarity is the PRIMARY signal (query-specific)
+                # - Importance is a BOOST, not a dominator
+                # - Other factors provide minor adjustments
+                #
+                # Formula: similarity^1.3 gives high-similarity results more weight
+                # Importance contributes 0.5 + (importance * 0.5) = 50-100% multiplier
+                # This means importance can boost by up to 50%, not dominate
+                similarity_weight = max(0.0, similarity) ** 1.3  # Amplify similarity differences (clamp to avoid complex)
+                importance_factor = 0.5 + (row["importance"] * 0.5)  # 0.5-1.0 range
+
                 base_score = (
-                    similarity * 0.40 +
-                    row["importance"] * 0.20 +
+                    similarity_weight * 0.55 +  # Dominant factor
                     decay_factor * 0.15 +
-                    min(reinforcement * 0.10, 0.15)  # Cap reinforcement contribution
+                    min(reinforcement * 0.10, 0.12)  # Cap reinforcement
                 )
-                # Apply keyword boost and role affinity as multipliers
-                composite = base_score * keyword_boost * role_affinity
+                # Apply importance as a multiplier (not additive) along with other boosts
+                composite = base_score * importance_factor * keyword_boost * role_affinity
 
                 memory_data = {
                     "id": row["id"],
@@ -1357,6 +1364,10 @@ class MemoryStore:
         Returns:
             True if updated successfully
         """
+        # Clamp importance to valid range [0.0, 1.0]
+        if importance is not None:
+            importance = max(0.0, min(1.0, importance))
+
         # Build update query dynamically
         updates = []
         params = []
