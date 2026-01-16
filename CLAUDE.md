@@ -2,6 +2,17 @@
 
 Semantic memory system for Claude Code via MCP protocol.
 
+## Architecture Roadmap
+
+**READ FIRST:** `MEMORY_ARCHITECTURE_ROADMAP.md` contains the full improvement plan based on AI memory research.
+
+**Key insight:** Systems that store everything then prune performed 10% WORSE than no memory.
+
+**Priority improvements:**
+1. Quality gate at formation (reject low-value content BEFORE storing)
+2. Working memory layer (ephemeral buffer, auto-promotes after validation)
+3. Adaptive forgetting (per-memory decay based on access patterns)
+
 ## Session Start
 
 **First, ensure venv is cached to RAM for fast imports:**
